@@ -62,3 +62,26 @@ protected:
 
   static void PushChar (char ch);
 };
+
+class EmBdecode {
+public:
+  EmBdecode (char* buf, uint8_t len) 
+    : bufPtr (buf), bufLen (len) { reset(); }
+
+  uint8_t reset () {
+    count = next - bufPtr;
+    next = bufPtr;
+    level = 0;
+    state = EMB_ANY;
+    return count;
+  }
+
+  uint8_t process (char ch);
+  
+protected:
+  enum { EMB_ANY, EMB_LEN, EMB_INT, EMB_STR };
+
+  char *bufPtr, *next;
+  uint8_t bufLen, count, state;
+  char level;
+};
