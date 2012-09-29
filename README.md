@@ -1,4 +1,4 @@
-embencode
+EmBencode
 =========
 
-Bencode protocol support for embedded processors
+This code implements Bencode protocol support for embedded processors.
