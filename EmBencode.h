@@ -9,17 +9,17 @@ class EmBencode {
 public:
   EmBencode () {}
   
-  static void pushString (const char* str) {
-    pushBytes(str, strlen(str));
+  static void push (const char* str) {
+    push(str, strlen(str));
   }
 
-  static void pushBytes (const void* ptr, uint8_t len) {
+  static void push (const void* ptr, uint8_t len) {
     PushCount(len);
     PushChar(':');
     PushData(ptr, len);
   }
 
-  static void pushNumber (long val) {
+  static void push (long val) {
     PushChar('i');
     if (val < 0) {
       PushChar('-');
