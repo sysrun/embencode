@@ -4,7 +4,7 @@
 #include "EmBencode.h"
 
 uint8_t EmBdecode::process (char ch) {
-  *next++ = ch;
+  bufPtr[next++] = ch;
   switch (state) {
     case EMB_ANY:
       if (ch < '0' || ch > '9') {
@@ -44,5 +44,5 @@ uint8_t EmBdecode::process (char ch) {
     state = EMB_ANY;
     return 0;
   }
-  return reset(); // not in dict or list, so data is complete
+  return reset(); // not in dict or list, data is complete
 }

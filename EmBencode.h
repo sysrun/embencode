@@ -69,9 +69,8 @@ public:
     : bufPtr (buf), bufLen (len) { reset(); }
 
   uint8_t reset () {
-    count = next - bufPtr;
-    next = bufPtr;
-    level = 0;
+    count = next;
+    level = next = 0;
     state = EMB_ANY;
     return count;
   }
@@ -81,7 +80,6 @@ public:
 protected:
   enum { EMB_ANY, EMB_LEN, EMB_INT, EMB_STR };
 
-  char *bufPtr, *next;
-  uint8_t bufLen, count, state;
-  char level;
+  char level, *bufPtr;
+  uint8_t bufLen, count, next, state;
 };
