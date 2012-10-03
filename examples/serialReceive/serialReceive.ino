@@ -16,10 +16,38 @@ void setup () {
 
 void loop () {
   if (Serial.available() > 0) {
-    uint8_t bytes = decode.process(Serial.read());
+    char ch = Serial.read();
+    Serial.write(ch);
+    uint8_t bytes = decode.process(ch);
     if (bytes > 0) {
-      embuf[bytes] = 0;
-      Serial.println(embuf);
+      Serial.print(" => ");
+      Serial.print((int) bytes);
+      Serial.println(" bytes");
+      for (;;) {
+        uint8_t token = decode.nextToken();
+        if (token == EmBdecode::T_END)
+          break;
+        switch (token) {
+          case EmBdecode::T_STRING:
+            Serial.print(" string: ");
+            Serial.println(decode.asString());
+            break;
+          case EmBdecode::T_NUMBER:
+            Serial.print(" number: ");
+            Serial.println(decode.asNumber());
+            break;
+          case EmBdecode::T_DICT:
+            Serial.println(" > dict");
+            break;
+          case EmBdecode::T_LIST:
+            Serial.println(" > list");
+            break;
+          case EmBdecode::T_POP:
+            Serial.println(" < pop");
+            break;
+        }
+      }
+      decode.reset();
     }
   }
 }

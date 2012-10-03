@@ -65,21 +65,22 @@ protected:
 
 class EmBdecode {
 public:
+  enum { T_STRING = 0, T_NUMBER = 251, T_DICT, T_LIST, T_POP, T_END };
+
   EmBdecode (char* buf, uint8_t len) 
     : bufPtr (buf), bufLen (len) { reset(); }
 
-  uint8_t reset () {
-    count = next;
-    level = next = 0;
-    state = EMB_ANY;
-    return count;
-  }
+  uint8_t reset ();
 
   uint8_t process (char ch);
+
+  uint8_t nextToken ();
+  const char* asString (uint8_t* plen =0);
+  long asNumber ();
   
 protected:
-  enum { EMB_ANY, EMB_LEN, EMB_INT, EMB_STR };
+  void AddToBuf (char ch);
 
-  char level, *bufPtr;
-  uint8_t bufLen, count, next, state;
+  char level, *bufPtr; 
+  uint8_t bufLen, count, next, last, state;
 };
