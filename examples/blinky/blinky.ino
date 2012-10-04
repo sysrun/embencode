@@ -29,7 +29,6 @@ static void sendGreeting () {
   encoder.push("blinky");
   encoder.push(VERSION);
   encoder.endList();
-  Serial.println();
 }
 
 static void sendErrorMsg (const char* msg) {
@@ -37,14 +36,12 @@ static void sendErrorMsg (const char* msg) {
   encoder.push(1); // error code
   encoder.push(msg);
   encoder.endList();
-  Serial.println();
 }
 
 static void sendDoneMsg () {
   encoder.startList();
   encoder.push("done");
   encoder.endList();
-  Serial.println();
 }
 
 void sendTriggerTime () {
@@ -52,7 +49,6 @@ void sendTriggerTime () {
   encoder.push("time");
   encoder.push(millis());
   encoder.endList();
-  Serial.println();
 }
 
 static void setNumber (int& ivar) {
