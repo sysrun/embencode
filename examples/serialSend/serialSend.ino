@@ -1,4 +1,5 @@
-// Demo sketch to send some bencoded data structures out over the serial port.
+/// @dir serialSend
+/// Demo sketch to send some bencoded data structures out over the serial port.
 // 2012-09-29 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
 
 #include "EmBencode.h"

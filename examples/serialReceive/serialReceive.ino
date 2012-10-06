@@ -1,4 +1,5 @@
-// Demo sketch to receive some bencoded data structures from the serial port.
+/// @dir serialReceive
+/// Demo sketch to receive some bencoded data structures from the serial port.
 // 2012-09-29 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
 
 // Sample data:

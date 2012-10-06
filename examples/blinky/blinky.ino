@@ -1,4 +1,5 @@
-// Blinky demo sketch, controlled by Bencoded commands.
+/// @dir blinky
+/// Blinky demo sketch, controlled by Bencoded commands.
 // 2012-10-03 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
 
 // Sample data:
