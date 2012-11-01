@@ -1,7 +1,7 @@
-EmBencode {#index}
-=========
+About {#index}
+=====
 
-This code implements [Bencode][1] protocol support for embedded processors.
+**EmBencode** implements [Bencode][1] protocol support for embedded processors.
 
 The latest source code for this project is maintained on [GitHub][2].  
 You can download all the project source files in [ZIP][3] or [TAR][4] format:  

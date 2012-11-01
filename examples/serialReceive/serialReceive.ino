@@ -8,7 +8,7 @@
 #include "EmBencode.h"
 
 char embuf [200];
-EmBdecode decode (embuf, sizeof embuf);
+EmBdecode decoder (embuf, sizeof embuf);
 
 void setup () {
   Serial.begin(57600);
@@ -19,23 +19,23 @@ void loop () {
   if (Serial.available() > 0) {
     char ch = Serial.read();
     Serial.write(ch);
-    uint8_t bytes = decode.process(ch);
+    uint8_t bytes = decoder.process(ch);
     if (bytes > 0) {
       Serial.print(" => ");
       Serial.print((int) bytes);
       Serial.println(" bytes");
       for (;;) {
-        uint8_t token = decode.nextToken();
+        uint8_t token = decoder.nextToken();
         if (token == EmBdecode::T_END)
           break;
         switch (token) {
           case EmBdecode::T_STRING:
             Serial.print(" string: ");
-            Serial.println(decode.asString());
+            Serial.println(decoder.asString());
             break;
           case EmBdecode::T_NUMBER:
             Serial.print(" number: ");
-            Serial.println(decode.asNumber());
+            Serial.println(decoder.asNumber());
             break;
           case EmBdecode::T_DICT:
             Serial.println(" > dict");
@@ -48,7 +48,7 @@ void loop () {
             break;
         }
       }
-      decode.reset();
+      decoder.reset();
     }
   }
 }
